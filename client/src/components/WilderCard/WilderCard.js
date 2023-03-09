@@ -17,7 +17,7 @@ const WilderCard = ({ data }) => {
         {data.skills.map((skill, index) => (
           <li key={index}>
             {skill.name}
-            <span className="votes">{skill.votes}</span>
+            {/* <span className="votes">{skill.votes}</span> */}
           </li>
         ))}
       </ul>

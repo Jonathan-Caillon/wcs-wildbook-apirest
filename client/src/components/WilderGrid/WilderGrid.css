@@ -1,8 +1,0 @@
-/* 
- * card-layout. css 
- */
- .card-row {
-    display: grid;
-    grid-template-columns: repeat(3, 32%);
-    justify-content: space-between;
-  }

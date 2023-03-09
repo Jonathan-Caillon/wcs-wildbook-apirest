@@ -1,10 +1,12 @@
 import "./App.css";
-import { WilderGrid, Header, Footer } from "./components";
+import { Header, Footer } from "./components";
+import { RouterProvider } from "react-router-dom";
+import router from "./router/router";
 function App() {
   return (
     <div>
       <Header />
-      <WilderGrid />
+      <RouterProvider router={router} />
       <Footer />
     </div>
   );
