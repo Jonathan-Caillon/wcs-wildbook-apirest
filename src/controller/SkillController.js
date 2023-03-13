@@ -2,7 +2,7 @@ const dataSource = require("../utils").dataSource;
 const Skill = require("../entity/Skill");
 
 class SkillController {
-  async create(req, res) {
+  static async create(req, res) {
     try {
       await dataSource.getRepository(Skill).save(req.body);
       res.status(201).send("Created Skill");
@@ -15,7 +15,7 @@ class SkillController {
     }
   }
 
-  async read(req, res) {
+  static async read(req, res) {
     try {
       const data = await dataSource.getRepository(Skill).find();
       res.status(200).send(data);
@@ -25,7 +25,7 @@ class SkillController {
     }
   }
 
-  async update(req, res) {
+  static async update(req, res) {
     try {
       const updatedUser = await dataSource
         .getRepository(Skill)
@@ -37,7 +37,7 @@ class SkillController {
     }
   }
 
-  async delete(req, res) {
+  static async delete(req, res) {
     try {
       const skillId = req.params.id;
       const existingWilder = await dataSource

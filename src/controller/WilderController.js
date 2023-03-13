@@ -3,7 +3,7 @@ const Wilder = require("../entity/Wilder");
 const Skill = require("../entity/Skill");
 
 class WilderController {
-  async create(req, res) {
+  static async create(req, res) {
     try {
       await dataSource.getRepository(Wilder).save(req.body);
       res.status(201).send("Created Wilder");
@@ -13,7 +13,7 @@ class WilderController {
     }
   }
 
-  async read(req, res) {
+  static async read(req, res) {
     try {
       const data = await dataSource.getRepository(Wilder).find();
       res.status(200).send(data);
@@ -23,7 +23,7 @@ class WilderController {
     }
   }
 
-  async update(req, res) {
+  static async update(req, res) {
     try {
       const wilderId = req.params.id;
       const existingWilder = await dataSource
@@ -42,7 +42,7 @@ class WilderController {
     }
   }
 
-  async delete(req, res) {
+  static async delete(req, res) {
     try {
       const wilderId = req.params.id;
       const existingWilder = await dataSource
@@ -60,7 +60,7 @@ class WilderController {
     }
   }
 
-  async addSkill(req, res) {
+  static async addSkill(req, res) {
     try {
       const wilderToUpdate = await dataSource
         .getRepository(Wilder)
