@@ -5,10 +5,6 @@ const router = createBrowserRouter([
     path: "/",
     element: <WilderGrid />,
   },
-  {
-    path: "addwilder",
-    element: <div>About</div>,
-  },
 ]);
 
 export default router;

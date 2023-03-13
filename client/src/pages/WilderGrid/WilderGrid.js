@@ -1,35 +1,34 @@
-import { WilderCard } from "../../components/index";
-import "./WilderGrid.css";
+import { WilderCard, AddWilderForm } from "../../components/index";
+import style from "./WilderGrid.module.css";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { getWilder } from "../../wildersData";
 
 const WilderGrid = () => {
   const [wildersData, setWildersData] = useState(null);
+  const fetchData = async () => {
+    const Wilders = await getWilder();
+    setWildersData(Wilders.data);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const getWilders = await getWilder();
-      setWildersData(getWilders.data);
-    };
     fetchData();
   }, []);
+
   return (
     <main className="container">
+      <AddWilderForm fetchData={fetchData} />
       <h2>Wilders</h2>
-      <Link className="button" to="addwilder">
-        Add Wilder
-      </Link>
-      {!wildersData ? (
+      {wildersData ? (
         <>
-          <div>No wilders yet</div>
+          <section className={style.cardRow}>
+            {wildersData.map((wilder, index) => (
+              <WilderCard fetchData={fetchData} data={wilder} key={index} />
+            ))}
+          </section>
         </>
       ) : (
         <>
-          <section className="card-row">
-            {wildersData.map((wilder, index) => (
-              <WilderCard data={wilder} key={index} />
-            ))}
-          </section>
+          <div>No wilders yet</div>
         </>
       )}
     </main>

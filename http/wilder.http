@@ -27,5 +27,5 @@ Content-Type: application/json
 
 ### Ajouter Skill Wilder
 
-POST http://localhost:5000/api/wilder/1/skill/1
+POST http://localhost:5000/api/wilder/4/skill/1
 

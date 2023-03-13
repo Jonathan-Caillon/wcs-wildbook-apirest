@@ -18,7 +18,7 @@ class SkillController {
   async read(req, res) {
     try {
       const data = await dataSource.getRepository(Skill).find();
-      res.send(data);
+      res.status(200).send(data);
     } catch (err) {
       console.error(err);
       res.status(400).send("Error while reading Skill");
@@ -30,7 +30,7 @@ class SkillController {
       const updatedUser = await dataSource
         .getRepository(Skill)
         .update(req.params.id, req.body);
-      res.send(updatedUser);
+      res.status(201).send(updatedUser);
     } catch (err) {
       console.error(err);
       res.status(400).send("Error while updating Skill");
@@ -50,7 +50,7 @@ class SkillController {
       const deletedUser = await dataSource
         .getRepository(Skill)
         .delete(req.params.id);
-      res.send(deletedUser);
+      res.status(200).send(deletedUser);
     } catch (err) {
       console.error(err);
       res.status(400).send("Error while deleting Skill");

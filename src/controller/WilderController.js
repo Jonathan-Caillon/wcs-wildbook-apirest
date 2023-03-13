@@ -16,10 +16,10 @@ class WilderController {
   async read(req, res) {
     try {
       const data = await dataSource.getRepository(Wilder).find();
-      res.send(data);
+      res.status(200).send(data);
     } catch (err) {
       console.error(err);
-      res.send("Error while reading Wilder");
+      res.status(400).send("Error while reading Wilder");
     }
   }
 
@@ -35,10 +35,10 @@ class WilderController {
       const updatedUser = await dataSource
         .getRepository(Wilder)
         .update(wilderId, req.body);
-      res.send(updatedUser);
+      res.status(201).send(updatedUser);
     } catch (err) {
       console.error(err);
-      res.send("Error while updating Wilder");
+      res.status(400).send("Error while updating Wilder");
     }
   }
 
@@ -52,10 +52,8 @@ class WilderController {
         res.status(404).send("Wilder not found");
         return;
       }
-      const deletedUser = await dataSource
-        .getRepository(Wilder)
-        .delete(wilderId);
-      res.send(deletedUser);
+      await dataSource.getRepository(Wilder).delete(wilderId);
+      res.status(200).send("Deleted Wilder");
     } catch (err) {
       console.error(err);
       res.status(400).send("Error while deleting Wilder");
@@ -78,10 +76,10 @@ class WilderController {
       }
       wilderToUpdate.skills = [...wilderToUpdate.skills, skillToAdd];
       await dataSource.getRepository(Wilder).save(wilderToUpdate);
-      res.send("Skill added to wilder");
+      res.status(201).send("Skill added to wilder");
     } catch (err) {
       console.log(err);
-      res.send("Error while adding skill to wilder");
+      res.status(400).send("Error while adding skill to wilder");
     }
   }
 }

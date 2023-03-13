@@ -1,6 +1,14 @@
 import blank_profile from "../../assets/blank_profile.png";
 import "./WilderCard.css";
-const WilderCard = ({ data }) => {
+import { deleteWilder } from "../../wildersData";
+
+const WilderCard = ({ data, fetchData }) => {
+  const deleteData = async () => {
+    const Wilder = await deleteWilder(data.id);
+    console.log(Wilder.data);
+    fetchData();
+  };
+
   return (
     <article className="card">
       <img src={blank_profile} alt={`${data.name} Profile`} />
@@ -21,6 +29,14 @@ const WilderCard = ({ data }) => {
           </li>
         ))}
       </ul>
+      <h4>Actions</h4>
+      <button
+        title={`Delete ${data.name}`}
+        className="btn"
+        onClick={deleteData}
+      >
+        Delete
+      </button>
     </article>
   );
 };
